@@ -12,3 +12,6 @@ You need to know 3 things for this to work.
 * Do ``` npm install ```
 * Run as ``` node main.js ```
 * If you want to run it in the background, ``` nohup node main.js & ```
+
+# Links
+* https://www.hipchat.com/docs/apiv2

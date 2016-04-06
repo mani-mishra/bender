@@ -5,15 +5,12 @@ var CronJob = require('cron').CronJob;
 var quotesArray = [];
 
 // Constants specifc to your hipchat instances
-const HIPCHAT_ROOM_ID = "2464549"; // Find out your room ID
-const HIPCHAT_ROOM_TOKEN = "vxeo4D29vsUlHb2HGjvIlSLIusCsqf814mHb0hvA"; //"mysupersecrettoken"; // Token generated for above room, Have a look at readme as to how to get yours
-const HIPCHAT_BASE_URL = "fireeye-cloud.hipchat.com" ; //https://mycompany.hipchat.com";
+const HIPCHAT_ROOM_ID = "myawesomeroomid"; // Find out your room ID
+const HIPCHAT_ROOM_TOKEN = "mysupersecrettoken"; // Token generated for above room, Have a look at readme as to how to get yours
+const HIPCHAT_BASE_URL = "https://mycompany.hipchat.com";
 const HIPCHAT_ROOM_NOTIFICATION_API = '/v2/room/' + HIPCHAT_ROOM_ID + '/notification?auth_token=' + HIPCHAT_ROOM_TOKEN;
-// Interval to send the room notifications
-const NOTIFICATION_INTERVAL = 2 * 60 * 60 * 1000; // in milliseconds
 
-
-var HipChat = restler.service(function(u, p) {
+HipChat = restler.service(function(u, p) {
   this.defaults.username = u;
   this.defaults.password = p;
 }, {
@@ -42,18 +39,19 @@ lineReader.on('line', function(line) {
   quotesArray.push(line);
 });
 
+
 lineReader.on('close', function() {
   console.log('Length of array is ' + quotesArray.length);
-  blowTheTrumpet();
-  var interval = setInterval(blowTheTrumpet, NOTIFICATION_INTERVAL);
+  // When the array is fully filled, start the cron job to send notifications
+  // Below cron tab pattern runs from monday to friday from 10 AM to 10 PM at 2 hours interval.
+  new CronJob('00 00 10,12,14,16,18,20,22 * * 1-5',blowTheTrumpet , null, true, 'Asia/Kolkata');
 });
-
 
 // select a random quote from array and send it as a payload to Hipchat API
 var blowTheTrumpet = function() {
   var randomQuote = quotesArray[Math.floor(Math.random() * quotesArray.length)];
   var payload = {
-    notify: true, // Notifies 
+    notify: true, // notifies the user about the message
     message: randomQuote 
   };
   console.log("Sending quote:" + JSON.stringify(payload));
@@ -61,12 +59,3 @@ var blowTheTrumpet = function() {
     console.log(data);
   });
 };
-
-var job = new CronJob({
-  cronTime: '00 30 10,13,16,19,22 * * 1-5', // Runs every weekday (Mon to Fri) starting from 10:30 AM to 10:30 PM, at 3 hours interval
-  onTick: blowTheTrumpet,
-  start: true, /* Start the job right now */
-  timeZone: 'Asia/Kolkata' /* Time zone of this job. */
-});
-
-job.start();
