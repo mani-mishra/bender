@@ -1,6 +1,6 @@
 /**
 Bender - A simple nodejs HipChat Bot
-Purpose - Read some content from any given file, adn sends them as notification to any give HipChat room
+Purpose - Read some content from any given file, and send them as notification to any give HipChat room
 Author - manimis902
 
 **/
