@@ -1,4 +1,4 @@
-# bender-hipchat-bot
+# bender
 
 A simple hipchat bot which sends notifications to a hipchat room of your choice.
 
@@ -15,3 +15,4 @@ You need to know 3 things for this to work.
 
 # Links
 * https://www.hipchat.com/docs/apiv2
+* https://en.wikipedia.org/wiki/Bender_(Futurama)
