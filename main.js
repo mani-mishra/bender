@@ -1,3 +1,11 @@
+/**
+Bender - A simple nodejs HipChat Bot
+Purpose - Read some content from any given file, adn sends them as notification to any give HipChat room
+Author - manimis902
+
+**/
+
+
 // Require them modules
 var readline = require('readline');
 var restler = require('restler');
@@ -10,6 +18,7 @@ const HIPCHAT_ROOM_TOKEN = "mysupersecrettoken"; // Token generated for above ro
 const HIPCHAT_BASE_URL = "https://mycompany.hipchat.com";
 const HIPCHAT_ROOM_NOTIFICATION_API = '/v2/room/' + HIPCHAT_ROOM_ID + '/notification?auth_token=' + HIPCHAT_ROOM_TOKEN;
 
+// Create a restler class
 HipChat = restler.service(function(u, p) {
   this.defaults.username = u;
   this.defaults.password = p;
@@ -26,6 +35,7 @@ HipChat = restler.service(function(u, p) {
   }
 });
 
+// create an instance of restler class
 var notSlack = new HipChat();
 
 // Create a line reader object 
@@ -39,7 +49,7 @@ lineReader.on('line', function(line) {
   quotesArray.push(line);
 });
 
-
+// when line reading is done
 lineReader.on('close', function() {
   console.log('Length of array is ' + quotesArray.length);
   // When the array is fully filled, start the cron job to send notifications
