@@ -1,0 +1,6 @@
+{
+  "name": "Bender-hipchat-bot",
+  "tagline": "A simple nodejs hipchat bot ",
+  "body": "# bender-hipchat-bot\r\n\r\nA simple hipchat bot which sends notifications to a hipchat room of your choice.\r\n\r\nYou need to know 3 things for this to work.\r\n\r\n1. Your HipChat instance URL : ``` https://company.hipchat.com ```\r\n2. The hipchat room ID : ``` https://company.hipchat.com/rooms?t=mine ```\r\n3. The notification token for the above room ``` https://company.hipchat.com/rooms/tokens/<room_id> ```\r\n\r\n# Usage\r\n* Do ``` npm install ```\r\n* Run as ``` node main.js ```\r\n* If you want to run it in the background, ``` nohup node main.js & ```\r\n\r\n# Links\r\n* https://www.hipchat.com/docs/apiv2",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
