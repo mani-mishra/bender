@@ -1,0 +1,22 @@
+{
+	"name": "bender-hipchat-bot",
+	"preferGlobal": true,
+	"version": "0.0.1",
+	"author": "Mani Mishra <manimishra902@gmail.com>",
+	"description": "A simple hipchat bot which sends quotes to a hipchat room",
+	"license": "MIT",
+	"engines": {
+		"node": ">=0.10"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/manimis902/bender-hipchat-bot.git"
+	},
+	"scripts": {
+		"start": "node main.js"
+	},
+	"dependencies": {
+		"cron": "^1.1.0",
+		"restler": "^3.4.0"
+	}
+}
