@@ -40,6 +40,7 @@ var notSlack = new HipChat();
 
 // Create a line reader object 
 var lineReader = readline.createInterface({
+  terminal: false,
   input: require('fs').createReadStream('quotes.txt')
 });
 
